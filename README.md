@@ -10,4 +10,4 @@ As such, the number of credits for a course depends on the total amount of hours
 
 The used formula is:
 
-`((class hours * class hour duration) + (other hours * other hour duration)) / 60 minutes * number of weeks / (total workload / 60 ects)`
+`((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks / (yearly workload / 60 ects)`

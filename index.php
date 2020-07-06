@@ -69,38 +69,38 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
 ?>
 
 <html lang="en">
-    <head>
-        <title>ECTS Calculator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>    
-            html        { font-family: sans-serif; }
-            body        { max-width: 80ex;
-                          margin: auto; }
-            h1          { text-align: center; }
-            fieldset    { margin-bottom: 2ex; }
-            legend      { font-weight: bold; }
-            label       { float: left; }
-            .tooltip    { display: inline-block;
-                          width: 2ex; height: 2ex;
-                          background-color: lightgray;
-                          border-radius: 1ex;
-                          text-align: center;
-                          vertical-align: middle;
-                          font-size: small;
-                          text-decoration: none; 
-                          color: black; }
-            .inputcont  { width: 18ex; float: right; margin-left: 1ex; margin-bottom: .5ex; }
-                input               { width: 10ex; }
-                input[type=number]  { text-align: right; }
-            br          { clear: both; }
-            hr          { clear: both; margin-top: .5ex; margin-bottom: 1ex;}
-            #result     { text-align: center;
-                          border: 1px solid lightgray;
-                          padding: 1ex; 
-                          font-size: large;
-                          font-weight: bold; }
-        </style>
-    </head>
+<head>
+    <title>ECTS Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>    
+        html        { font-family: sans-serif; }
+        body        { max-width: 80ex;
+                      margin: auto; }
+        h1          { text-align: center; }
+        fieldset    { margin-bottom: 2ex; }
+        legend      { font-weight: bold; }
+        label       { float: left; }
+        .tooltip    { display: inline-block;
+                      width: 2ex; height: 2ex;
+                      background-color: lightgray;
+                      border-radius: 1ex;
+                      text-align: center;
+                      vertical-align: middle;
+                      font-size: small;
+                      text-decoration: none; 
+                      color: black; }
+        .inputcont  { width: 18ex; float: right; margin-left: 1ex; margin-bottom: .5ex; }
+            input               { width: 10ex; }
+            input[type=number]  { text-align: right; }
+        br          { clear: both; }
+        hr          { clear: both; margin-top: .5ex; margin-bottom: 1ex;}
+        #result     { text-align: center;
+                      border: 1px solid lightgray;
+                      padding: 1ex; 
+                      font-size: large;
+                      font-weight: bold; }
+    </style>
+</head>
 <body>
 
 <h1>ECTS Calculator</h1>
@@ -147,15 +147,15 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
 <fieldset>
     <legend>Explanation</legend>
     
-    <p>This calculator helps you to calculate a course's ECTS given the total actual hours of work a student will perform. The <a href="https://op.europa.eu/s/n9bG" title="ECTS User Guide">ECTS User Guide of the European Union</a> states:</p>
+    <p>This calculator helps you to calculate a course's academic credits in the European Credit Transfer and Accumulation System (ECTS) given the total actual hours of work a student will perform. The <a href="https://op.europa.eu/s/n9bG" title="ECTS User Guide">ECTS User Guide of the European Union</a> states:</p>
     
     <blockquote>The correspondence of the full-time workload of an academic year to 60 credits is often formalised by national legal provisions. In most cases, workload ranges from 1,500 to 1,800 hours for an academic year, which means that one credit corresponds to 25 to 30 hours of work.</blockquote>
     
-    <p>As such, the number of credits for a course depends on the total amount of hours worked for that course and on the total yearly workload. If you know the exact full-time workload of an academic year for your institution, this can optionally be indicated; otherwise, the guideline of 1500 to 1800 hours will be used and an ECTS range will be given.</p>
+    <p>As such, the number of credits for a course depends on the total amount of hours worked for that course and on the total yearly workload. If you know the exact full-time workload of an academic year for your institution, this can optionally be indicated; otherwise, the guideline of 1500 to 1800 hours will be used and an ECTS credit range will be given.</p>
     
     <p>The used formula is:</p>
     
-    <blockquote>((class hours * class hour duration) + (other hours * other hour duration)) / 60 minutes * number of weeks / (total workload / 60 ects)</blockquote>    
+    <blockquote>((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks / (yearly workload / 60 ects)</blockquote>    
 </fieldset>
 
 </body>
