@@ -27,6 +27,7 @@ SOFTWARE.
 <?php
 
 if( isset( $_GET['ch'] ) ) {
+    # getting indicated values
     $ch = filter_var($_GET['ch'], FILTER_SANITIZE_NUMBER_INT);
     $cd = filter_var($_GET['cd'], FILTER_SANITIZE_NUMBER_INT);
     $oh = filter_var($_GET['oh'], FILTER_SANITIZE_NUMBER_INT);
@@ -34,6 +35,7 @@ if( isset( $_GET['ch'] ) ) {
     $nw = filter_var($_GET['nw'], FILTER_SANITIZE_NUMBER_INT);
     $wl = filter_var($_GET['wl'], FILTER_SANITIZE_NUMBER_INT);
 } else {
+    # setting defaults
     $ch = 4;
     $cd = 45;
     $oh = 4;
@@ -43,6 +45,7 @@ if( isset( $_GET['ch'] ) ) {
 }
 
 if( isset($wl) && $wl > 0 ) {
+    # workload is meaningfully given;
     # calculating ECTS with indicated workload
     $ects = calculate_ects($ch, $cd, $oh, $od, $nw, $wl);
 } else {
@@ -52,6 +55,7 @@ if( isset($wl) && $wl > 0 ) {
     $ects = "{$ects1} - {$ects2}";
 }
 
+# getting some values to report
 $classweekly = round( $ch * $cd  / 60, 1 );
 $classtotal = $classweekly * $nw;
 $otherweekly = round( $oh * $od  / 60, 1) ;
@@ -72,6 +76,7 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
             html        { font-family: sans-serif; }
             body        { max-width: 80ex;
                           margin: auto; }
+            h1          { text-align: center; }
             fieldset    { margin-bottom: 2ex; }
             legend      { font-weight: bold; }
             label       { float: left; }
