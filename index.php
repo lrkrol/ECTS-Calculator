@@ -131,7 +131,7 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
             <br />
             <hr />
         <div class="inputcont"><input type="submit" value="Calculate"></div>
-        <a href="./index.php">Reset</a>
+        <a href="./<?php echo basename(__FILE__); ?>">Reset</a>
     </fieldset>
 </form>
 
