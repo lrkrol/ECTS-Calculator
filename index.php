@@ -151,12 +151,23 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
     
     <blockquote>The correspondence of the full-time workload of an academic year to 60 credits is often formalised by national legal provisions. In most cases, workload ranges from 1,500 to 1,800 hours for an academic year, which means that one credit corresponds to 25 to 30 hours of work.</blockquote>
     
-    <p>As such, the number of credits for a course depends on the total amount of hours worked for that course and on the total yearly workload. If you know the exact full-time workload of an academic year for your institution, this can optionally be indicated; otherwise, the guideline of 1500 to 1800 hours will be used and an ECTS credit range will be given.</p>
+    <p>As such, the number of credits for a course depends on the total amount of hours worked for that course and on the total yearly workload. If you know the exact full-time workload of an academic year for your country or programme (also see below), this can optionally be indicated; otherwise, the guideline of 1500 to 1800 hours will be used and an ECTS credit range will be given.</p>
     
     <p>The used formula is:</p>
     
     <blockquote>((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks / (yearly workload / 60 ects)</blockquote>    
 </fieldset>
+
+<fieldset>
+    <legend>Yearly workloads</legend>
+    
+    <p>
+        Austria: <a href="https://www.jusline.at/gesetz/univg/paragraf/54">1500</a><br />
+        Germany: defined in the <i>Studienordnung</i> of each programme<br />
+        Netherlands: <a href="https://wetten.overheid.nl/BWBR0005682/2019-02-01/#Hoofdstuk7_Titeldeel1_Paragraaf1_Artikel7.4">1680</a>
+    </p>
+    
+    <p>Please <a href="https://github.com/lrkrol/ECTS-Calculator">open an issue on GitHub</a> or <a href="https://spamty.eu/mail/v4/980/nCXKj2OiVv293e7e6d/">let me know</a> if you have information about other countries.</p>
 
 </body>
 </html>
