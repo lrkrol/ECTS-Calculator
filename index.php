@@ -100,12 +100,17 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
                       font-size: large;
                       font-weight: bold; }
     </style>
+    <script>
+        function recalcWL(wl) {
+            document.getElementById('wl').value = wl;
+            document.ectscalc.submit(); }
+    </script>
 </head>
 <body>
 
 <h1>ECTS Calculator</h1>
 
-<form method="get" action="./<?php echo basename(__FILE__); ?>">
+<form name="ectscalc" method="get" action="./<?php echo basename(__FILE__); ?>">
     <fieldset>
         <legend>ECTS Calculator</legend>
         <label for="ch">Class hours per week <a class="tooltip" title="The number of hours per week that a student will be in class.">?</a></label>
@@ -155,16 +160,18 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
     
     <p>The used formula is:</p>
     
-    <blockquote>((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks / (yearly workload / 60 ects)</blockquote>    
+    <blockquote>((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks / (yearly workload / 60 ects)</blockquote>
+    
+    <p>or in other words, the total hours worked as a fraction of the yearly workload, times sixty.</p>
 </fieldset>
 
 <fieldset>
     <legend>Yearly workloads</legend>
     
     <p>
-        Austria: <a href="https://www.jusline.at/gesetz/univg/paragraf/54">1500</a><br />
+        Austria: <a href="#" title="Fill in" onclick="recalcWL(1500);">1500</a> (<a href="https://www.jusline.at/gesetz/univg/paragraf/54">Source</a>)<br />
         Germany: defined in the <i>Studienordnung</i> of each programme<br />
-        Netherlands: <a href="https://wetten.overheid.nl/BWBR0005682/2019-02-01/#Hoofdstuk7_Titeldeel1_Paragraaf1_Artikel7.4">1680</a>
+        Netherlands: <a href="#" title="Fill in" onclick="recalcWL(1680);">1680</a> (<a href="https://wetten.overheid.nl/BWBR0005682/2019-02-01/#Hoofdstuk7_Titeldeel1_Paragraaf1_Artikel7.4">Source</a>)
     </p>
     
     <p>Please <a href="https://github.com/lrkrol/ECTS-Calculator">open an issue on GitHub</a> or <a href="https://spamty.eu/mail/v4/980/nCXKj2OiVv293e7e6d/">let me know</a> if you have information about other countries.</p>
