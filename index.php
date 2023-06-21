@@ -33,6 +33,7 @@ if( isset( $_GET['ch'] ) ) {
     $oh = filter_var($_GET['oh'], FILTER_SANITIZE_NUMBER_INT);
     $od = filter_var($_GET['od'], FILTER_SANITIZE_NUMBER_INT);
     $nw = filter_var($_GET['nw'], FILTER_SANITIZE_NUMBER_INT);
+    $ot = filter_var($_GET['ot'], FILTER_SANITIZE_NUMBER_INT);
     $wl = filter_var($_GET['wl'], FILTER_SANITIZE_NUMBER_INT);
 } else {
     # setting defaults
@@ -41,17 +42,18 @@ if( isset( $_GET['ch'] ) ) {
     $oh = 4;
     $od = 60;
     $nw = 15;
+    $ot = 10;
     $wl = '';
 }
 
 if( isset($wl) && $wl > 0 ) {
     # workload is meaningfully given;
     # calculating ECTS with indicated workload
-    $ects = calculate_ects($ch, $cd, $oh, $od, $nw, $wl);
+    $ects = calculate_ects($ch, $cd, $oh, $od, $nw, $ot, $wl);
 } else {
     # calculating ECTS with workload 1500 - 1800
-    $ects1 = calculate_ects($ch, $cd, $oh, $od, $nw, 1800);
-    $ects2 = calculate_ects($ch, $cd, $oh, $od, $nw, 1500);
+    $ects1 = calculate_ects($ch, $cd, $oh, $od, $nw, $ot, 1800);
+    $ects2 = calculate_ects($ch, $cd, $oh, $od, $nw, $ot, 1500);
     $ects = "{$ects1} - {$ects2}";
 }
 
@@ -59,11 +61,12 @@ if( isset($wl) && $wl > 0 ) {
 $classweekly = round( $ch * $cd  / 60, 1 );
 $classtotal = $classweekly * $nw;
 $otherweekly = round( $oh * $od  / 60, 1) ;
-$othertotal = $otherweekly * $nw; 
-$totalhours = $classtotal + $othertotal;
+$othertotal = $otherweekly * $nw;
+$onetime = $ot;
+$totalhours = $classtotal + $othertotal + $onetime;
 
-function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
-    return round( ( ( $ch * $cd ) + ( $oh * $od ) ) / 60 * $nw / ($wl / 60), 1 );
+function calculate_ects($ch, $cd, $oh, $od, $nw, $ot, $wl) {
+    return round( ( ( ( $ch * $cd ) + ( $oh * $od ) ) / 60 * $nw + $ot ) / ($wl / 60), 1 );
 }
 
 ?>
@@ -131,6 +134,10 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
             <div class="inputcont"><input type="number" id="nw" name="nw" value="<?php echo $nw; ?>" /> weeks</div>
             <br />
             <hr />
+        <label for="wl">Additional, one-time work hours <a class="tooltip" title="The number of full (60-minute) hours the student will be working in addition to the weekly hours, e.g. to prepare for a final examination.">?</a>:</label>
+            <div class="inputcont"><input type="number" id="ot" name="ot" value="<?php echo $ot; ?>" /> hours</div>
+            <br />
+            <hr />
         <label for="wl"><i>Optional:</i> Full-time yearly workload <a class="tooltip" title="The full-time workload in hours of an academic year, which equals 60 credits. If you know this number, fill it in here; otherwise, a range will be used.">?</a>:</label>
             <div class="inputcont"><input type="number" id="wl" name="wl" value="<?php echo $wl; ?>" /> hours</div>
             <br />
@@ -143,7 +150,7 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
 <fieldset>
     <legend>Result</legend>
     <p>
-        <?php echo "{$classtotal} total class hours ({$classweekly} per week) + {$othertotal} total other hours ({$otherweekly} per week) = {$totalhours} hours ="; ?>
+        <?php echo "{$classtotal} total class hours ({$classweekly} per week) + {$othertotal} total other hours ({$otherweekly} per week) + {$onetime} additional hours = {$totalhours} hours ="; ?>
     </p>
     
     <div id="result"><?php echo $ects; ?> ECTS</div>
@@ -160,7 +167,7 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
     
     <p>The used formula is:</p>
     
-    <blockquote>((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks / (yearly workload / 60 ects)</blockquote>
+    <blockquote>(((weekly class hours * class hour duration) + (weekly other hours * other hour duration)) / 60 minutes * number of weeks) + one-time hours) / (yearly workload / 60 ects)</blockquote>
     
     <p>or in other words, the total hours worked as a fraction of the yearly workload, times sixty.</p>
 </fieldset>
@@ -170,7 +177,7 @@ function calculate_ects($ch, $cd, $oh, $od, $nw, $wl) {
     
     <p>
         Austria: <a href="#" title="Fill in" onclick="recalcWL(1500);">1500</a> (<a href="https://www.jusline.at/gesetz/univg/paragraf/54">Source</a>)<br />
-        Germany: defined in the <i>Studienordnung</i> of each programme<br />
+        Germany: defined in the <i>Studienordnung</i> of each university or programme<br />
         Netherlands: <a href="#" title="Fill in" onclick="recalcWL(1680);">1680</a> (<a href="https://wetten.overheid.nl/BWBR0005682/2019-02-01/#Hoofdstuk7_Titeldeel1_Paragraaf1_Artikel7.4">Source</a>)
     </p>
     
